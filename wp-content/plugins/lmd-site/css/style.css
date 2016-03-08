@@ -1,0 +1,114 @@
+body, html{
+	background: #e6e7e8;
+	color: #58595b;
+	font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/* ADMIN DASHBOARD STYLES*/
+div#wpcontent{
+    background-image: url('../assets/mare-island2.png');
+    background-size: contain;
+    background-position: center center;
+    background-attachment: fixed;
+    z-index:0;
+}
+
+/* END ADMIN DASHBOARD STYLES*/
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #fff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #fff;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #fff;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #fff;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+    color:    #fff;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #158AFF;
+    border-color: #18395A;
+}
+.btn-primary:hover {
+    background-color: #0F65BB;
+}
+.btn-content{
+    color: #333;
+    background-color: #dcdcdc;
+    border-color: #999;
+}
+#save {
+	line-height: 6;
+}
+
+h1 {
+	color: #58595b;
+	font-family: 'Open Sans';
+    font-weight: 700;
+	text-transform: uppercase;
+}
+.black-box{
+	color: #58595b;
+	background-color: transparent;
+	border: 2px solid #58595b;
+	text-transform: uppercase;
+}
+
+h2 {
+	margin-top: 0px;
+}
+
+p {
+	font-weight:500;
+}
+
+.block {
+    background: white;
+    box-shadow: #949494 0.5px 0.5px 10px;
+    padding: 20px;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+
+.no-pad {
+    padding: 0;
+}
+
+.white-text{
+    color: #fff;
+}
+
+.hide {
+    display: none;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.tip {
+    font-size: 14px;
+    font-style: italic;
+    border-left: 10px solid #F05E23;
+    padding: 5px;
+}
+
+.title-input {
+    line-height: 2;
+    font-size: 20px;
+    font-weight: 700;
+    color: #555;
+    width: 100%;
+}
+.white-bg {
+    background: #fff;
+}

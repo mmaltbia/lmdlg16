@@ -1,0 +1,120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Give - PayPal Payments Pro\n"
+"POT-Creation-Date: 2015-03-23 16:18-0800\n"
+"PO-Revision-Date: 2015-03-23 16:19-0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: give-paypal-pro.php:71
+msgid "PayPal Pro"
+msgstr ""
+
+#: give-paypal-pro.php:72
+msgid "Credit Card"
+msgstr ""
+
+#: give-paypal-pro.php:103
+msgid "You must enter your API keys in settings"
+msgstr ""
+
+#: give-paypal-pro.php:181
+msgid "PayPal Pro Error"
+msgstr ""
+
+#: give-paypal-pro.php:181
+#, php-format
+msgid "PayPal Pro returned an error while processing a payment. Details: %s"
+msgstr ""
+
+#: give-paypal-pro.php:204
+msgid "PayPal Website Payments Pro API Keys"
+msgstr ""
+
+#: give-paypal-pro.php:211
+msgid "Live API Username"
+msgstr ""
+
+#: give-paypal-pro.php:212
+msgid "Enter your live API username"
+msgstr ""
+
+#: give-paypal-pro.php:218
+msgid "Live API Password"
+msgstr ""
+
+#: give-paypal-pro.php:219
+msgid "Enter your live API password"
+msgstr ""
+
+#: give-paypal-pro.php:224
+msgid "Live API Signature"
+msgstr ""
+
+#: give-paypal-pro.php:225
+msgid "Enter your live API signature"
+msgstr ""
+
+#: give-paypal-pro.php:230
+msgid "Test API Username"
+msgstr ""
+
+#: give-paypal-pro.php:231
+msgid "Enter your test API username"
+msgstr ""
+
+#: give-paypal-pro.php:236
+msgid "Test API Password"
+msgstr ""
+
+#: give-paypal-pro.php:237
+msgid "Enter your test API password"
+msgstr ""
+
+#: give-paypal-pro.php:242
+msgid "Test API Signature"
+msgstr ""
+
+#: give-paypal-pro.php:243
+msgid "Enter your test API signature"
+msgstr ""
+
+#: give-paypal-pro.php:323
+msgid "Billing Address"
+msgstr ""
+
+#: give-paypal-pro.php:326
+msgid "Billing City"
+msgstr ""
+
+#: give-paypal-pro.php:329
+msgid "Billing Zip"
+msgstr ""
+
+#: give-paypal-pro.php:332
+msgid "Credit Card Number"
+msgstr ""
+
+#: give-paypal-pro.php:335
+msgid "CVC Code"
+msgstr ""
+
+#: give-paypal-pro.php:338
+msgid "Credit Card Expiration Month"
+msgstr ""
+
+#: give-paypal-pro.php:341
+msgid "Credit Card Expiration Year"
+msgstr ""
