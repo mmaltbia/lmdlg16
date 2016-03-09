@@ -15,6 +15,24 @@ div#wpcontent{
 }
 
 /* END ADMIN DASHBOARD STYLES*/
+#newsupporter ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #000;
+}
+#newsupporter :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #000;
+    opacity:  1;
+}
+#newsupporter ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #000;
+    opacity:  1;
+}
+#newsupporter :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #000;
+}
+#newsupporter :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+    color:    #000;
+}
+
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #fff;
 }
@@ -31,6 +49,22 @@ div#wpcontent{
 }
 :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
     color:    #fff;
+}
+input[type=text] {
+    width: 100%;
+    line-height: 3;
+}
+
+input[type=checkbox]{
+    margin: -3px 0 0;
+    margin-right: 5px;
+}
+
+textarea {
+    color: #333;
+}
+#supporter_editor {
+    color: #333;
 }
 
 .btn-primary {

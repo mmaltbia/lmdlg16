@@ -30,6 +30,27 @@
     font-weight: 300;
   }
 
+.grayscale:hover {
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.grayscale {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+}
+
+.quote {
+    background: black;
+    color: white;
+    padding-top: 10px;
+    z-index: 999;
+    position: absolute;
+    width: 100%;
+}
+
 input#join_email{
     padding-left: 15px;
 }

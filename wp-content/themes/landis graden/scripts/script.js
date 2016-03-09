@@ -1,4 +1,10 @@
 jQuery(document).ready(function( $ ) {
+    $('.grayscale').mouseenter(function(e){
+        $(e.currentTarget.nextSibling).css('display', 'block');
+        console.log('hello');
+    }).mouseleave(function(e){
+        $(e.currentTarget.nextSibling).css('display', 'none');
+    })
     
     $('#issue1').on('click', function(e){
         e.preventDefault();

@@ -31,9 +31,60 @@ function lmd_callback_homepage(){
 			'block4_issue4'  => sanitize_text_field( $_POST['block4_issue4'] ),
 			'block4_issue5'  => sanitize_text_field( $_POST['block4_issue5'] ),
 			'block4_issue6'  => sanitize_text_field( $_POST['block4_issue6'] ),
+            'show_supporters'  => sanitize_text_field( $_POST['show_supporters'] )
+            
 			);
 		update_option('page_home', $data);
 	}
+    
+    if (isset ($_POST['supporter-submit']) ) {
+        $db_supporter = get_option('supporter_details');
+
+        $new_supporter = array(
+            'supporter_img' => sanitize_text_field( $_POST['supporter_img'] ),
+            'supporter_name' => sanitize_text_field( $_POST['supporter_name'] ),
+            'supporter_org' => sanitize_text_field( $_POST['supporter_org'] ),
+            'supporter_quote'  => wpautop( $_POST['supporter_quote'] )
+        );
+
+        if (empty($db_supporter)){
+            add_option('supporter_details');
+            $db_supporter = [];
+            array_push($db_supporter, $new_supporter);
+            update_option('supporter_details', $db_supporter);
+        }
+
+        else {
+            array_push($db_supporter, $new_supporter);
+            print_r($db_supporter);
+            update_option('supporter_details', $db_supporter);
+        }
+    }
+    
+    // Removes Supporter
+    if (isset ($_POST['remove-btn-sup']) ) {
+        echo 'remove-btn clicked';
+        $db_supporter = get_option('supporter_details');
+        $i = 	$_POST['remove-btn-sup']; 
+        unset($db_supporter[$i]);
+        $updated_list = array_values($db_supporter);
+        update_option('supporter_details', $updated_list);
+    }
+    
+    // Edits Supporter
+    if (isset ($_POST['supporter-edit-submit']) ) {
+        $db_supporter = get_option('supporter_details');
+        $i = 	$_POST['supporter-edit-submit']; 
+        $updated_supporter = array(
+            'supporter_img' => sanitize_text_field( $_POST['supporter_img'] ),
+            'supporter_name' => sanitize_text_field( $_POST['supporter_name'] ),
+            'supporter_org' => sanitize_text_field( $_POST['supporter_org'] ),
+            'supporter_quote'  => wpautop( $_POST['supporter_quote'] )
+        );
+        $db_supporter[$i] = $updated_supporter;
+        echo $db_supporter[$i];
+        update_option('supporter_details', $db_supporter);
+    }
 
 	$db_values = get_option('page_home');
 	foreach ($db_values as $key=>$value) {
@@ -44,6 +95,9 @@ function lmd_callback_homepage(){
     foreach ($db_values as $key=>$value) {
         $db_values[$key] = stripslashes($value);
     }
+
+    $db_supporter = get_option('supporter_details');
+    print_r($db_values['show_supporters']);
 
 	//setting empty values to avoid 'undefined index' warning
 	$block1_img = '';
@@ -68,7 +122,13 @@ function lmd_callback_homepage(){
 	$block4_issue4 = '';
 	$block4_issue5 = '';
 	$block4_issue6 = '';
-//if there's any data in options table, updating our variables with relevant data6	if( $db_values ) {
+    $show_supporters = '';
+    $supporter_name = '';
+    $supporter_org = '';
+    $supporter_quote = '';
+    
+//if there's any data in options table, updating our variables with relevant data	
+if( $db_values ) {
     $block1_img = $db_values_banner['block1_img'] ? $db_values_banner['block1_img'] : '';
     $block1_title = $db_values_banner['block1_title'] ? $db_values_banner['block1_title'] : '';
     $block1_body = $db_values_banner['block1_body'] ? $db_values_banner['block1_body'] : '';
@@ -91,7 +151,8 @@ function lmd_callback_homepage(){
     $block4_issue4 = $db_values['block4_issue4'] ? $db_values['block4_issue4'] : '';
     $block4_issue5 = $db_values['block4_issue5'] ? $db_values['block4_issue5'] : '';
     $block4_issue6 = $db_values['block4_issue6'] ? $db_values['block4_issue6'] : '';
-
+    $show_supporters = $db_values['show_supporters'] ? $db_values['show_supporters'] : '';
+}
 ?>
 <form name="main-form" action="" method="post">
 <div class="container-fluid">
@@ -190,10 +251,145 @@ function lmd_callback_homepage(){
                                     </div>
                                 </div>
                             </div>	
-                        
                         <div class="col-xs-12">
-                            <input type="submit" class="btn-secondary btn pull-right" name="main-submit" value="Publish Page" style="margin-top: 25px; margin-bottom: 25px;">
+                            <!-- Button trigger modal -->
+                            <br><br>
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newsupporter">
+                                Add Supporter
+                            </button>
+                            <br><br>
+                            <label><input type="checkbox" id="cbox1" value="<?php echo esc_attr($db_values['show_supporters']); ?>" <?php if($db_values['show_supporters'] === 'true'){echo 'checked';}?> name="show_supporters"> Show Supporters Section on Home Page</label><br>
+                            <br><br>
+                            
+                            <!-- Modal -->
+                            <form name="supporter-details-form" action="" method="post">
+                                <div class="modal fade" id="newsupporter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Supporter Details</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <?php
+                                                            if(! empty($supporter_img)){ ?>
+                                                            <p class="col-xs-12">Photo of Supporter:</p>
+                                                            <img class="col-xs-12 no-pad" src="<?php echo esc_attr($db_supporters['supporter_img']); ?>">
+                                                            <?php }
+                                                            else { ?>
+                                                        <div id="supporter-img" style="background:#777">
+                                                                <img src="<?php echo plugins_url( '/assets/svgs/no-image.svg', __FILE__ )?>" width="100%">
+                                                            </div> 
+                                                            <?php }
+                                                        ?>
+                                                        <input type="text" id="supporter-image" name="supporter_img" value="" size="30" style="width:65%; visibility: hidden;">
+                                                        
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <input type="text" name="supporter_name" value="" size="30" style="width:100%;" placeholder="Supporter Name"><br><br>
+                                                        <input type="text" name="supporter_org" value="" size="30" style="width:100%;" placeholder="Supporter Organization/Affiliation">
+                                                        <input id="upload_supporter_img" class="btn-primary btn" type="button" value="Choose Image" />
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <?php 
+                                                            $text = stripslashes_deep(wpautop($db_values['supporter_quote']));
+                                                            $content = $text;
+                                                            $editor_id = 'supporter_editor';
+                                                            $settings = array(
+                                                                'textarea_name' => 'supporter_quote',
+                                                                'wpautop' => true,
+                                                                'textarea_rows' => 3
+                                                            );
+
+                                                            wp_editor(wpautop($content), $editor_id, $settings ); 
+                                                        ?>
+                                                        <br>
+                                                        <br>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer" style="border: none;">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn-primary btn" name="supporter-submit" value="Add Supporter">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+                        
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <?php 
+                            $db_supporters = get_option('supporter_details');
+                            $length = count($db_supporters);
+
+                            if (empty($db_supporters)) { ?>
+                                <div class="col-xs-12 block" style="color: #333;">
+                                    <?php echo 'No supporters to display.'; ?>
+                                </div> 
+                            <?php 
+                               }
+                            if (!empty($db_supporters)){
+                                echo '<h2>Current Supporters</h2>';
+                                for ($i = 0; $i < $length; $i++) { ?>
+                        <div class="col-xs-12" style="background: #fff;padding-top:20px;margin-bottom:40px;">
+                            <form action="" method="post">
+                                <button type="submit" class="remove-btn" name="remove-btn-sup" value="<?php echo $i ?>" 
+                                        style="
+                                               background-color: #313131;
+                                               color: white;
+                                               border-radius: 15px;
+                                               width: 29px;
+                                               position: absolute;
+                                               top: -14px;
+                                               right: -12px;">x</button>
+
+                                <div class="col-xs-12 col-sm-5">
+                                    <div id="supporter-img-edit-<?php echo $i ?>">
+                                        <img width="100%" src="<?php echo $db_supporters[$i]['supporter_img']?>" >
+                                    </div>
+                                    <input type="text" id="supporter-image-edit" name="supporter_img" value="<?php echo $db_supporters[$i]['supporter_img'] ?>" style="width:65%;visibility:hidden;">
+                                    <input id="supporter_image_edit_button" class="btn-primary btn supporter-edit" type="button" value="Choose Image" name="<?php echo $i ?>" />
+                                </div>
+                                
+                                
+                                <div class="col-xs-12 col-sm-7">
+                                    <input type="text" name="supporter_name" value="<?php echo esc_attr($db_supporters[$i]['supporter_name']);?>" width="100%">
+                                    <br><br>
+                                    <input type="text" name="supporter_org" width="100%" value="<?php echo esc_attr($db_supporters[$i]['supporter_org']); ?>" placeholder="Supporter Organization/Affiliation">
+                                    <br><br>
+                                    <?php 
+                                          $text = stripslashes_deep(wpautop($db_supporters[$i]['supporter_quote']));
+                                          $content = $text;
+                                          $editor_id = 'supporter_edit_editor_'.$i;
+                                          $settings = array(
+                                              'textarea_name' => 'supporter_quote',
+                                              'wpautop' => true,
+                                              'textarea_rows' => 3
+                                          );
+
+                                          wp_editor(wpautop($content), $editor_id, $settings ); 
+                                    ?>
+                                    <br>
+                                    
+                                    <button class="btn btn-secondary pull-right" type="submit" name="supporter-edit-submit" value="<?php echo $i ?>">Save Changes</button>
+                                    <br><br>
+                                </div>
+                            </form>
+                        </div>
+                        <?php } 
+    }
+                        ?>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <input type="submit" class="btn-secondary btn pull-right" name="main-submit" value="Publish Page" style="margin-top: 25px; margin-bottom: 25px;">
+                </div>
 				</div>
 			</div>
 		</div>

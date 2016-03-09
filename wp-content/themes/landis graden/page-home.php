@@ -109,16 +109,16 @@ get_header();
 ?>
 
 	<!-- Container 1 -->
-<div class="container-fluid" style="background-image: url('<?php echo $block1_img?>'); background-attachment: fixed; min-height: 550px;">
-    <div class="row">
-	  <div>
-	    <div class="col-xs-12 text-center title-text white-text" style="padding-left: 0px;padding-right: 0px;margin-top:20%;">
-            <h1><?php echo $banner_data['block1_title']?></h1>
-            <span><?php echo stripslashes_deep($banner_data['block1_body'])?></span>
-	    </div>
-	  </div> 
+    <div class="container-fluid" style="background-image: url('<?php echo $block1_img?>'); background-attachment: fixed; min-height: 600px;background-size:100% 100%;">
+        <div class="row">
+          <div>
+            <div class="col-xs-12 text-center title-text white-text" style="padding-left: 0px;padding-right: 0px;margin-top:20%;">
+                <h1><?php echo $banner_data['block1_title']?></h1>
+                <span><?php echo stripslashes_deep($banner_data['block1_body'])?></span>
+            </div>
+          </div> 
+        </div>
     </div>
-</div>
 	
 	<!-- Container 2 -->
 	<div id="meet-landis" class="container-fluid"> 
@@ -132,6 +132,7 @@ get_header();
 			
 		</div>
 	</div>
+	
 	<!-- Container 3 / Join the Campaign / Give -->
 	<div id="donate" class="container-fluid white-text text-left" style="background: url('<?php echo get_bloginfo('template_directory'); ?>/images/blue-logo-bg.png'); min-height: 450px; z-index: 0"> 
 		<div class="row row2" style="z-index: 3;">
@@ -166,7 +167,63 @@ get_header();
 			</div>
 		</div>
 	</div>
-	<!-- Container 4 Take Action-->
+	
+    <!-- Container 4 We Support Landis-->
+    <?php if($data['show_supporters'] === 'true'){ 
+        $supporter = get_option('supporter_details');
+        $length = count($supporter);
+    ?>
+    <div class="container-fluid" id="issues"> 
+        <div class="row med-pad">
+            <div class="col-xs-12 text-center">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center block" style="background:#F05E22;color:#fff;padding-bottom:8px;">
+                    <h3 class="gray-box" style="text-transform:uppercase;"><?php echo $block4_title ?></h3>
+                </div>
+                <div class="col-xs-12 col-sm-6 text-center col-sm-offset-3">
+                    <br>
+                    <p><?php echo $block4_body ?></p>
+                </div>
+                <div class="col-xs-12" style="padding:0;">
+                   <?php for($i=0; $i<$length; $i++){
+                            if($length % 2 == 1){
+                                if($length == 1){
+                                    $img = '<img  src="'.$supporter[$i]['supporter_img'].'" width="100%">';
+                                    $quote = $supporter[$i]['supporter_quote'];
+                                    echo '<div>"'. $img .'"</div>';
+                                    break;
+                                }
+                                if($length == 3 || $length % 3 == 0){
+                                    $img = '<img  src="'.$supporter[$i]['supporter_img'].'" width="100%">';
+                                    $quote = $supporter[$i]['supporter_quote'];
+                                    echo '<div class="col-xs-4" style="padding:0"><div class="grayscale" style="padding:0;">'. $img .'</div><div class="quote" style="padding:0;display:none;">'. $quote .'</div></div>';
+                                }
+                                if($length == 5){
+                                    $img = '<img  src="'.$supporter[$i]['supporter_img'].'" width="100%">';
+                                    $quote = $supporter[$i]['supporter_quote'];
+                                    echo '<div class="col-xs-3" style="padding:0"><div class="grayscale" style="padding:0;">'. $img .'</div><div class="quote" style="padding:0;display:none;">'. $quote .'</div></div>';
+                                }
+                            }
+                            if($length % 2 == 0){
+                                if($length == 2){
+                                    $img = '<img  src="'.$supporter[$i]['supporter_img'].'" width="100%">';
+                                    $quote = $supporter[$i]['supporter_quote'];
+                                    echo '<div class="col-xs-6" style="padding:0"><div class="grayscale" style="padding:0;">'. $img .'</div><div class="quote" style="padding:0;display:none;">'. $quote .'</div></div>';
+                                }
+                                if($length == 4 || $length % 4 == 0){
+                                    $img = '<img  src="'.$supporter[$i]['supporter_img'].'" width="100%">';
+                                    $quote = $supporter[$i]['supporter_quote'];
+                                    echo '<div class="col-xs-3" style="padding:0"><div class="grayscale" style="padding:0;">'. $img .'</div><div class="quote" style="padding:0;display:none;">'. $quote .'</div></div>';
+                                }
+                            }
+                        } 
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+	
+	<!-- Container 4 We Support Landis-->
 	<div class="container-fluid" id="issues"> 
 		<div class="row med-pad">
 			<div class="col-xs-12 text-center">
@@ -176,7 +233,6 @@ get_header();
 				<div class="col-xs-12 col-sm-6 text-center col-sm-offset-3">
 					<p><?php echo $block4_body ?></p>
 				</div>
-			
 			</div>
 		</div>
 	</div>
