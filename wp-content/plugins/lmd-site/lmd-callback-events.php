@@ -6,8 +6,16 @@ function lmd_callback_events(){
             'block1_img' => sanitize_text_field( $_POST['block1_img'] ),
             'block1_title' => sanitize_text_field( $_POST['block1_title'] ),
             'block1_body'  => sanitize_text_field( $_POST['block1_body'] ),
+            'join_banner'  => sanitize_text_field( $_POST['join_banner'] )
         );
         update_option('page_events_banner', $data);
+    }
+    
+    if (isset ($_POST['banner-submit-2'])) {
+        $data = array(
+            'join_banner'  => sanitize_text_field( $_POST['join_banner'] )
+        );
+        update_option('page_events_banner2', $data);
     }
     
     if (isset ($_POST['page-submit']) ) {
@@ -36,6 +44,7 @@ function lmd_callback_events(){
     $block2_img = '';
     $block2_title = '';
     $block2_body = '';
+    $join_banner = '';
 
     $block1_img = $db_values_banner['block1_img'] ? $db_values_banner['block1_img'] : '';
     
@@ -162,9 +171,9 @@ function lmd_callback_events(){
                 <h1 class="white-text" style="margin-bottom: 20px;">Events Page</h1>
             </div>
         </div>
-        <div class="col-sm-10 col-sm-offset-1 no-pad" style="background:rgba(35, 40, 45, 0.90);color: #fff;">
+        <div class="col-sm-10 col-sm-offset-1" style="background:rgba(35, 40, 45, 0.90);color: #fff;">
             <div class="row">
-                <div class="col-sm-12 no-pad" background-color:#fff;>
+                <div class="col-sm-12" background-color:#fff;>
                     <form name="banner-form" action="" method="post" onsubmit="window.location.reload()">
                         <div class="col-xs-12">
                             <h2>Banner Image</h2>
@@ -172,11 +181,15 @@ function lmd_callback_events(){
                             <input id="upload_image_button" class="btn-primary btn" type="button" value="Choose Image" />
                             <br>
                             <br>
-                            <div id="banner-img" class="col-xs-12 no-pad">
+                            <div id="banner-img" style="position:relative;">
                                 <?php
                                 if(! empty($block1_img)){ ?>
-                                <p class="col-xs-12">Current Banner Image:</p>
-                                <img class="col-xs-12 no-pad" src="<?php echo esc_attr($db_values_banner['block1_img']); ?>">
+                                <p>Current Banner Image:</p>
+                                <img src="<?php echo esc_attr($db_values_banner['block1_img']); ?>" width="100%">
+                                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" style="position:absolute;top:5%;">
+                                    <input class="title-input text-center" type="text" name="block1_title" value="<?php echo esc_attr($db_values_banner['block1_title']); ?>" width="100%" style="background: transparent; border: 2px solid #fff; margin-top: 25%; color: #fff;" placeholder="Heading">
+                                    <input class="title-input text-center" type="text" name="block1_body" value="<?php echo esc_attr($db_values_banner['block1_body']); ?>" width="100%" style="background: transparent; border: 2px solid #fff; margin-top: 15px; color: #fff; font-weight: 300;" placeholder="Subtitle">
+                                </div>
                                 <?php }
                                 else { ?>
                                 <div style="background:#777">
@@ -184,26 +197,24 @@ function lmd_callback_events(){
                                 </div>
                                 <?php }
                                 ?>
-                                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" style="position:absolute;">
-                                    <input class="title-input text-center" type="text" name="block1_title" value="<?php echo esc_attr($db_values_banner['block1_title']); ?>" width="100%" style="background: transparent; border: 2px solid #fff; margin-top: 150px; color: #fff;" placeholder="Heading">
-                                    <input class="title-input text-center" type="text" name="block1_body" value="<?php echo esc_attr($db_values_banner['block1_body']); ?>" width="100%" style="background: transparent; border: 2px solid #fff; margin-top: 15px; color: #fff; font-weight: 300;" placeholder="Subtitle">
-                                </div>
                             </div>
                             <input type="submit" class="btn-primary btn" name="banner-submit" value="Save Banner" style="margin-top: 25px; margin-bottom: 25px;">
                         </div>
                     </form>
                 </div>
             </div>
+            <div class="container-fluid no-pad" style="border-top: 8px solid #F05E23;"></div>
             <div class="container-fluid">
-                <div class="row"></div>
-            </div>
-            <div class="container-fluid" style="border-top: 8px solid #F05E23;">
                <div class="row">
                    <!-- Button trigger modal -->
-                   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newEvent">
-                       Add Event
-                   </button>
-
+                   <br>
+                   <div class="col-xs-12">
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newEvent">
+                            Add Event
+                        </button>
+                        <br><br>
+                   </div>
+                   <br>
                    <!-- Modal -->
                    <form name="event-details-form" action="" method="post">
                        <div class="modal fade" id="newEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -216,20 +227,22 @@ function lmd_callback_events(){
                                    <div class="modal-body">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6">
-                                            <input type="text" id="event-image" name="event_image" value="" size="30" style="width:65%; visibility: hidden;">
+                                            <div id="event-img" style="background:#777">
+                                                <img src="<?php echo plugins_url( '/assets/svgs/no-image.svg', __FILE__ )?>" width="100%">
+                                            </div> 
+                                            <br>
                                             <input id="upload_event_img" class="btn-primary btn" type="button" value="Choose Image" />
-                                            <div id="event-img">
-
-                                            </div>
+                                            <input type="text" id="event-image" name="event_image" value="" size="30" style="width:65%; visibility: hidden;">    
+                                            
                                         </div>
                                         <div class="col-xs-12 col-sm-6">
                                             <input type="text" name="event_name" value="" size="30" style="width:100%;" placeholder="Event Name"><br><br>
                                             <input class="datepicker" type="text" name="event_date" value="" size="30" style="width:100%;" placeholder="Event Date"><br><br>
-                                            <input type="text" name="event_time" value="" size="30" style="width:100%;" placeholder="Event Time">
+                                            <input type="text" name="event_time" value="" size="30" style="width:100%;" placeholder="Event Time"><br><br>
                                         </div>
                                         <div class="col-xs-12">
-                                            <textarea name="event_description" rows="3" style="width:100%;" placeholder="Event Description"></textarea>
-                                            <input type="text" name="event_location" value="" size="30" style="width:100%;" placeholder="Event Location">
+                                            <textarea name="event_description" rows="3" style="width:100%;" placeholder="Event Description"></textarea><br><br>
+                                            <input type="text" name="event_location" value="" size="30" style="width:100%;" placeholder="Event Location"><br><br>
                                             <input type="text" name="event_tickets" value="" placeholder="http://www.paypal.com"size="30" style="width:100%;" placeholder="Payment Gateway">
                                             <br>
                                             <br>
@@ -239,7 +252,7 @@ function lmd_callback_events(){
                                    </div>
                                    <div class="modal-footer" style="border: none;">
                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                       <input type="submit" class="btn-primary btn" name="event-submit" value="Add Event">
+                                       <input type="submit" id="submit-event-btn" class="btn-primary btn" name="event-submit" value="Add Event">
                                    </div>
                                </div>
                            </div>
@@ -248,59 +261,91 @@ function lmd_callback_events(){
                </div>
                
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style="margin-bottom:25px;">
                         <?php 
                         $db_event_list = get_option('event_details');
                         $length = count($db_event_list);
 
                         if (empty($db_event_list)) { ?>
-                                            <div class="col-xs-12 block" style="color: #333;">
-                                                <?php echo 'No upcoming events to display.'; ?>
-                                            </div> <?php 
-                                                   }
+                            <div class="col-xs-12 block" style="color: #333;">
+                                <?php echo 'No upcoming events to display.'; ?>
+                            </div> <?php }
                         if (!empty($db_event_list)){
                             echo '<h2>Upcoming Events</h2>';
                             for ($i = 0; $i < $length; $i++) { ?>
-                        <div class="col-xs-12" style="background: #fff;">
+                        <div class="col-xs-12" style="background: #fff;padding-bottom:20px;">
                             <form action="" method="post">
                                 <button type="submit" class="remove-btn" name="remove-btn" value="<?php echo $i ?>" 
-                                        style="
-                                               background-color: #313131;
-                                               color: white;
-                                               border-radius: 15px;
-                                               width: 29px;
-                                               position: absolute;
-                                               top: -14px;
-                                               right: -12px;">x</button>
+                                        style="background-color:#313131;color:white;border-radius:15px;width:29px;position:absolute;top: -14px;right: -12px;">x</button>
 
                                 <h4><?php echo $db_event_list[$i]['event_name'] ?></h4>
                                 <div class="col-xs-12 col-sm-5">
-                                    <div id="event-img-edit">
-                                        <img width="100%" src="<?php echo $db_event_list[$i]['event_image'] ?>" alt="">
-                                    </div>
-                                    <input type="text" id="event-image-edit" name="event_image" value="<?php echo $db_event_list[$i]['event_image'] ?>" size="30" style="width:65%;visibility:visible;">
-                                    <input id="event_image_button" class="btn-primary btn" type="button" value="Choose Image" />
+                                    <div id="event-img-edit-<?php echo $i ?>">
+                                        <img width="100%" src="<?php echo $db_event_list[$i]['event_image']?>" >
+                                    </div><br>
+                                    <input id="event_image_edit_button" class="btn-primary btn event-edit" type="button" value="Choose Image" name="<?php echo $i ?>" />
+                                    <input type="text" id="event-image-edit" name="event_image" value="<?php echo $db_event_list[$i]['event_image'] ?>" style="width:65%;visibility:hidden;">
                                 </div>
                                 <div class="col-xs-12 col-sm-7">
-                                    <input class="col-xs-12 col-sm-6" type="text" name="event_name" value="<?php echo esc_attr($db_event_list[$i]['event_name']); ?>" size="30">
+                                    <input class="col-xs-12 col-sm-6" type="text" name="event_name" value="<?php echo esc_attr($db_event_list[$i]['event_name']); ?>" size="30"><br><br>
                                     <input class="col-xs-12 col-sm-6" type="text" name="event_date" class="datepicker" value="<?php echo esc_attr($db_event_list[$i]['event_date']); ?>" size="30">
                                     <textarea name="event_description" id="" rows="3" style="width:100%;" placeholder="Event Description"><?php echo esc_attr($db_event_list[$i]['event_description']); ?></textarea>
-                                    <input type="text" name="event_location" value="<?php echo esc_attr($db_event_list[$i]['event_location']); ?>" size="30" placeholder="Event Location">
-                                    <input type="text" name="event_time" value="<?php echo esc_attr($db_event_list[$i]['event_time']); ?>" size="30" placeholder="Event Time">
-                                    <input type="text" name="event_tickets" value="<?php echo esc_attr($db_event_list[$i]['event_tickets']); ?>" size="30" placeholder="Event Tickets">
-                                    <button type="submit" name="event-edit-submit" value="<?php echo $i ?>">Save Changes</button>
+                                    <input type="text" name="event_location" value="<?php echo esc_attr($db_event_list[$i]['event_location']); ?>" size="30" placeholder="Event Location"><br><br>
+                                    <input type="text" name="event_time" value="<?php echo esc_attr($db_event_list[$i]['event_time']); ?>" size="30" placeholder="Event Time"><br><br>
+                                    <input type="text" name="event_tickets" value="<?php echo esc_attr($db_event_list[$i]['event_tickets']); ?>" size="30" placeholder="Event Tickets"><br><br>
+                                    <button type="submit" name="event-edit-submit" class="btn btn-secondary" value="<?php echo $i ?>">Save Changes</button>
+                                    
                                 </div>
                             </form>
                         </div>
                         <?php } 
-    }
+                        }
                         ?>
+                        
+                    </div>
+                    
+                    <div class="col-xs-12" style="border-top: 8px solid #F05E23;padding-top:25px;">
+                        <form name="banner-form" action="" method="post" onsubmit="window.location.reload()">
+                            <div class="col-xs-12">
+                                <h2>Join | Contribute Banner Image</h2>
+                                <div id="banner-join-img">
+                                    
+                                </div>
+                                <input type="text" id="join_banner" name="join_banner" value="" width="100%" class="hide">
+                                <input id="upload_join_banner" class="btn-primary btn" type="button" value="Choose Image" />
+                                <br>
+                                <br>
+                                
+                                    <?php
+                                    $join_banner_data = get_option('page_events_banner2');
+                                    $join_banner = $join_banner_data['join_banner'];
+                                    if(! empty($join_banner)){ ?>
+                                       
+                                        <div id="banner" class="col-xs-12">                         
+                                            <img class="col-xs-12" src="<?php echo $join_banner ?>">
+                                        </div>
+                                        <?php }
+                                    else { ?>
+                                    <div style="background:#777">
+                                        <span>No Image to Display</span>
+                                    </div>
+                                    <?php }
+                                    ?>
+<!--
+                                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" style="position:absolute;">
+                                        <input class="title-input text-center" type="text" name="join_banner" value="<?php echo esc_attr($db_values_banner['join_banner']); ?>" width="100%" style="background: transparent; border: 2px solid #fff; margin-top: 150px; color: #fff;" placeholder="Heading">
+                                        <input class="title-input text-center" type="text" name="block1_body" value="<?php echo esc_attr($db_values_banner['block1_body']); ?>" width="100%" style="background: transparent; border: 2px solid #fff; margin-top: 15px; color: #fff; font-weight: 300;" placeholder="Subtitle">
+                                    </div>
+-->
+                                <input type="submit" class="btn-primary btn" name="banner-submit-2" value="Save Banner" style="margin-top: 25px; margin-bottom: 25px;">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
 <?php };
-
 ?>

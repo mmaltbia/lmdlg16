@@ -298,12 +298,51 @@ $('#upload_event_img').click(function(e) {
         //When a file is selected, grab the URL and set it as the text field's value
         custom_uploader.on('select', function() {
             attachment = custom_uploader.state().get('selection').first().toJSON();
-            $('#block2_img').val(attachment.url);
+            $('#event-image').val(attachment.url);
+            $('#event-img').empty();
+            $('#event-img').append("<img src='"+attachment.url+"' class='w-100'>");
         });
     
         //Open the uploader dialog
         custom_uploader.open();
     
+    });
+    
+
+    $('.event-edit').click(function(e) {
+
+        e.preventDefault();
+        console.log(e); 
+        var imgPath = e.currentTarget.previousElementSibling;
+        var i = e.srcElement.name;
+        console.log(i);
+        //If the uploader object has already been created, reopen the dialog
+        if (custom_uploader) {
+            custom_uploader.open();
+            return;
+        }
+
+        //Extend the wp.media object
+        custom_uploader = wp.media.frames.file_frame = wp.media({
+            title: 'Choose Image',
+            button: {
+                text: 'Choose Image'
+            },
+            multiple: false
+        });
+
+        //When a file is selected, grab the URL and set it as the text field's value
+        custom_uploader.on('select', function() {
+            attachment = custom_uploader.state().get('selection').first().toJSON();
+            $(imgPath).val(attachment.url);
+            $('#event-img-edit-'+i).empty();
+            $('#event-img-edit-'+i).append("<img src='"+attachment.url+"' class='w-100'>");
+            console.log($('#event-img-edit-'+i));
+        });
+
+        //Open the uploader dialog
+        custom_uploader.open();
+
     });
 $('#event_image_button').click(function(e) {
 
@@ -686,6 +725,39 @@ $('#event_image_button').click(function(e) {
             $('#supporter-img-edit-'+i).empty();
             $('#supporter-img-edit-'+i).append("<img src='"+attachment.url+"' class='w-100'>");
             console.log($('#supporter-img-edit-'+i));
+        });
+
+        //Open the uploader dialog
+        custom_uploader.open();
+
+    });
+    
+    $('#upload_join_banner').click(function(e) {
+
+        e.preventDefault();
+
+        //If the uploader object has already been created, reopen the dialog
+        if (custom_uploader) {
+            custom_uploader.open();
+            return;
+        }
+
+        //Extend the wp.media object
+        custom_uploader = wp.media.frames.file_frame = wp.media({
+            title: 'Choose Image',
+            button: {
+                text: 'Choose Image'
+            },
+            multiple: false
+        });
+
+        //When a file is selected, grab the URL and set it as the text field's value
+        custom_uploader.on('select', function() {
+            attachment = custom_uploader.state().get('selection').first().toJSON();
+            $('#join_banner').val(attachment.url);
+            console.log(attachment.url);
+            $('#banner-join-img').empty();
+            $('#banner-join-img').append("<img src='"+attachment.url+"' class='w-100'>");
         });
 
         //Open the uploader dialog

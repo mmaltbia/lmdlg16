@@ -24,6 +24,18 @@
     overflow-x: hidden;
     word-wrap:break-word;
   }
+  
+  #menu-item li {
+      padding-bottom: 5px;
+     
+  }
+  
+  #menu-primary-menu li a:hover {
+    border-bottom: solid 5px #F05E22;
+    background-color: white;
+    color: #666;
+    
+  }
 
   p{
     font-family: 'Open Sans', sans-serif;

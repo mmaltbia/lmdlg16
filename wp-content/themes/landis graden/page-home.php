@@ -112,7 +112,7 @@ get_header();
     <div class="container-fluid" style="background-image: url('<?php echo $block1_img?>'); background-attachment: fixed; min-height: 600px;background-size:100% 100%;">
         <div class="row">
           <div>
-            <div class="col-xs-12 text-center title-text white-text" style="padding-left: 0px;padding-right: 0px;margin-top:20%;">
+            <div class="col-xs-12 text-center title-text white-text revealOnScroll" data-animation="flipInX" style="padding-left: 0px;padding-right: 0px;margin-top:20%;">
                 <h1><?php echo $banner_data['block1_title']?></h1>
                 <span><?php echo stripslashes_deep($banner_data['block1_body'])?></span>
             </div>
@@ -126,7 +126,7 @@ get_header();
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center block">
 				<h1 class="gray-box"><?php echo $block2_title ?></h1>
 			</div>
-			<div class="col-xs-12 col-sm-6 text-center col-sm-offset-3">
+			<div class="col-xs-12 col-sm-6 text-center col-sm-offset-3 revealOnScroll" data-animation="flipInX">
 				<p><?php echo $block2_body ?></p>
 			</div>
 			
@@ -137,7 +137,7 @@ get_header();
 	<div id="donate" class="container-fluid white-text text-left" style="background: url('<?php echo get_bloginfo('template_directory'); ?>/images/blue-logo-bg.png'); min-height: 450px; z-index: 0"> 
 		<div class="row row2" style="z-index: 3;">
 			<div class="col-xs-12">
-				<div class="col-xs-12 col-sm-6" style="padding-left: 30px;padding-right: 30px;" >
+				<div class="col-xs-12 col-sm-6 revealOnScroll" data-animation="flipInX" style="padding-left: 30px;padding-right: 30px;">
 					<h1>Join Team Landis.</h1>
                     <?php  if (isset($_POST['join-submit']) && ! empty($_POST['message_email'])) { 
                         $email = $_POST['message_email'];
@@ -152,7 +152,7 @@ get_header();
 					</form>
 				</div>
 				<div class="col-xs-1"></div>
-				<div class="col-xs-12 col-sm-5">
+				<div class="col-xs-12 col-sm-5 revealOnScroll" data-animation="flipInX">
 					<h1>Then Contribute.</h1>
 					<button class="btn lmd-give-btn">$35</button>
 					<button class="btn lmd-give-btn">$100</button>
@@ -183,7 +183,7 @@ get_header();
                     <br>
                     <p><?php echo $block4_body ?></p>
                 </div>
-                <div class="col-xs-12" style="padding:0;">
+                <div id="supporter-container" class="col-xs-12" style="padding:0;position:">
                    <?php for($i=0; $i<$length; $i++){
                             if($length % 2 == 1){
                                 if($length == 1){
@@ -200,7 +200,7 @@ get_header();
                                 if($length == 5){
                                     $img = '<img  src="'.$supporter[$i]['supporter_img'].'" width="100%">';
                                     $quote = $supporter[$i]['supporter_quote'];
-                                    echo '<div class="col-xs-3" style="padding:0"><div class="grayscale" style="padding:0;">'. $img .'</div><div class="quote" style="padding:0;display:none;">'. $quote .'</div></div>';
+                                    echo '<div class="col-xs-2" style="padding:0;background:orange;"><div class="grayscale" style="padding:0;">'. $img .'</div><div class="quote" style="padding:0;display:none;">'. $quote .'</div></div>';
                                 }
                             }
                             if($length % 2 == 0){
@@ -214,29 +214,19 @@ get_header();
                                     $quote = $supporter[$i]['supporter_quote'];
                                     echo '<div class="col-xs-3" style="padding:0"><div class="grayscale" style="padding:0;">'. $img .'</div><div class="quote" style="padding:0;display:none;">'. $quote .'</div></div>';
                                 }
+                                if($length == 6){
+                                    $img = '<img  src="'.$supporter[$i]['supporter_img'].'" width="100%">';
+                                    $quote = $supporter[$i]['supporter_quote'];
+                                    echo '<div class="col-xs-2" style="padding:0"><div class="grayscale" style="padding:0;">'. $img .'</div><div class="quote" style="padding:0;display:none;">'. $quote .'</div></div>';
+                                }
                             }
-                        } 
-                    ?>
+                        } ?>
+                    
                 </div>
             </div>
         </div>
     </div>
     <?php } ?>
 	
-	<!-- Container 4 We Support Landis-->
-	<div class="container-fluid" id="issues"> 
-		<div class="row med-pad">
-			<div class="col-xs-12 text-center">
-				<div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center block">
-					<h1 class="gray-box"><?php echo $block4_title ?></h1>
-				</div>
-				<div class="col-xs-12 col-sm-6 text-center col-sm-offset-3">
-					<p><?php echo $block4_body ?></p>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-
 			
 <?php get_footer(); ?>

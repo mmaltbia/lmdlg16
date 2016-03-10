@@ -21,12 +21,12 @@ function lmd_callback_join(){
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1" style="background:#23282D;">
             <div class="col-xs-8">
-                <h1 class="white-text" style="margin-bottom: 20px;">About Page</h1>
+                <h1 class="white-text" style="margin-bottom: 20px;">Join Page</h1>
             </div>
         </div>
-        <div class="col-sm-10 col-sm-offset-1 no-pad" style="background:rgba(35, 40, 45, 0.90);color: #fff;">
+        <div class="col-sm-10 col-sm-offset-1" style="background:rgba(35, 40, 45, 0.90);color: #fff;">
             <div class="row">
-                <div class="col-sm-12 no-pad" background-color:#fff;>
+                <div class="col-sm-12" background-color:#fff;>
                     <form name="banner-form" action="" method="post" onsubmit="window.location.reload()">
                         <div class="col-xs-12">
                             <h2>Banner Image</h2>
@@ -47,7 +47,7 @@ function lmd_callback_join(){
                                 <?php }
                                 ?>
                             </div>
-                            <input type="submit" class="btn-primary btn" name="banner-submit" value="Save Banner" style="margin-top: 25px;">
+                            <input type="submit" class="btn-primary btn" name="banner-submit" value="Save Banner" style="margin-top: 25px;margin-bottom:25px;">
                         </div>
                     </form>
                 </div>

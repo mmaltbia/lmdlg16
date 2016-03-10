@@ -6,9 +6,9 @@ body, html{
 }
 
 /* ADMIN DASHBOARD STYLES*/
-div#wpcontent{
+div#wpwrap{
     background-image: url('../assets/mare-island2.png');
-    background-size: contain;
+    background-size: cover;
     background-position: center center;
     background-attachment: fixed;
     z-index:0;
@@ -49,6 +49,24 @@ div#wpcontent{
 }
 :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
     color:    #fff;
+}
+
+#newEvent ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #333;
+}
+#newEvent :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #333;
+    opacity:  1;
+}
+#newEvent ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #333;
+    opacity:  1;
+}
+#newEvent :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #333;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+    color:    #333;
 }
 input[type=text] {
     width: 100%;

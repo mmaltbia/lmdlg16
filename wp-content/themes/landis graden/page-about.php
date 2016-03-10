@@ -14,10 +14,10 @@ $block3_panel1_title = $data['block3_panel1_title'];
 
 ?>
 <!-- Container 1 -->
-<div class="container-fluid" style="background-image: url('<?php echo $block1_img?>'); background-attachment: fixed; background-size: stretch; min-height: 550px;">
+<div class="container-fluid" style="background-image: url('<?php echo $block1_img?>'); background-attachment: fixed; background-size: cover; min-height: 550px;">
     <div class="row">
         <div>
-            <div class="col-xs-12 text-center title-text white-text" style="padding-left: 0px;padding-right: 0px;margin-top:20%;">
+            <div class="col-xs-12 text-center title-text white-text revealOnScroll" data-animation="flipInX" style="padding-left: 0px;padding-right: 0px;margin-top:20%;">
                 <h1><?php echo $data_banner['block1_title']?></h1>
                 <span><?php echo $data_banner['block1_body']?></span>
             </div>
@@ -29,20 +29,20 @@ $block3_panel1_title = $data['block3_panel1_title'];
        <?php
             if(empty($data['block2_video'])){ ?>
                 
-        <div class="col-xs-12 text-center" style="background: #fff;padding: 60px; position: relative; box-shadow: 2px 2px 7px #999;">
+        <div class="col-xs-12 text-center revealOnScroll" data-animation="flipInX" style="background: #fff;padding: 60px; position: relative; box-shadow: 2px 2px 7px #999;">
             <p><?php echo $data['block2_body']?></p>
             <div class="text-center" style="margin-left:-35px">
                 <img src="<?php echo get_bloginfo('template_directory')?>/images/quote.svg" style="position:absolute; top: -16px;">
             </div>
         </div>
     <?php } else { ?>
-        <div class="col-xs-12 col-sm-7" style="background: #fff;padding: 60px; position: relative; box-shadow: 2px 2px 7px #999;">
+        <div class="col-xs-12 col-sm-7 revealOnScroll" data-animation="flipInX" style="background: #fff;padding: 60px; position: relative; box-shadow: 2px 2px 7px #999;">
             <p><?php echo $data['block2_body']?></p>
             <div class="text-center" style="margin-left:-35px">
                 <img src="<?php echo get_bloginfo('template_directory')?>/images/quote.svg" style="position:absolute; top: -16px;">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-5">
+        <div class="col-xs-12 col-sm-5 revealOnScroll" data-animation="flipInX">
             <!-- 16:9 aspect ratio -->
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/xib_-YfVtS0" frameborder="0" allowfullscreen></iframe>
@@ -55,7 +55,7 @@ $block3_panel1_title = $data['block3_panel1_title'];
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center block">
             <h1 class="gray-box"><?php echo $data['block3_title'] ?></h1>
         </div>
-        <div class="col-xs-12 col-sm-6 text-center col-sm-offset-3">
+        <div class="col-xs-12 col-sm-6 text-center col-sm-offset-3 revealOnScroll" data-animation="flipInX">
             <p><?php echo $data['block3_body'] ?></p>
         </div>
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">

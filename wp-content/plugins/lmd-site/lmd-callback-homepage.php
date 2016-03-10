@@ -157,7 +157,7 @@ if( $db_values ) {
 <form name="main-form" action="" method="post">
 <div class="container-fluid">
 		<div class="row">
-            <div class="col-sm-10 col-sm-offset-1" style="background:#23282D;">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1" style="background:#23282D;">
                 <div class="col-xs-4">
                     <input type="submit" class="btn-secondary btn" name="main-submit" value="Publish Page" style="margin-top: 25px; margin-bottom: 25px;">
                 </div>
@@ -167,7 +167,7 @@ if( $db_values ) {
             </div>
             <div class="col-sm-10 col-sm-offset-1" style="background:rgba(35, 40, 45, 0.90);color: #fff;">
 				<div class="row">
-					<div class="col-sm-12 no-pad" background-color:#fff;>
+					<div class="col-sm-12 no-pad">
 						<form name="banner-form" action="" method="post" onsubmit="window.location.reload()">
 							<div class="col-xs-12">
 							    <div class="col-xs-12">
@@ -248,19 +248,11 @@ if( $db_values ) {
 
                                             wp_editor(wpautop($content), $editor_id, $settings ); 
                                         ?>
+                                        <br><br>
                                     </div>
                                 </div>
                             </div>	
                         <div class="col-xs-12">
-                            <!-- Button trigger modal -->
-                            <br><br>
-                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newsupporter">
-                                Add Supporter
-                            </button>
-                            <br><br>
-                            <label><input type="checkbox" id="cbox1" value="<?php echo esc_attr($db_values['show_supporters']); ?>" <?php if($db_values['show_supporters'] === 'true'){echo 'checked';}?> name="show_supporters"> Show Supporters Section on Home Page</label><br>
-                            <br><br>
-                            
                             <!-- Modal -->
                             <form name="supporter-details-form" action="" method="post">
                                 <div class="modal fade" id="newsupporter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -320,7 +312,6 @@ if( $db_values ) {
                                 </div>
                             </form>
                         </div>
-                        
 
                 <div class="row">
                     <div class="col-xs-12">
@@ -329,15 +320,29 @@ if( $db_values ) {
                             $length = count($db_supporters);
 
                             if (empty($db_supporters)) { ?>
-                                <div class="col-xs-12 block" style="color: #333;">
-                                    <?php echo 'No supporters to display.'; ?>
+                                <div class="col-xs-12" style="color: #333;background:#fff;">
+                                    <br><br>
+                                    <p><?php echo 'No supporters to display.'; ?></p>
                                 </div> 
                             <?php 
                                }
-                            if (!empty($db_supporters)){
-                                echo '<h2>Current Supporters</h2>';
-                                for ($i = 0; $i < $length; $i++) { ?>
-                        <div class="col-xs-12" style="background: #fff;padding-top:20px;margin-bottom:40px;">
+                            if (!empty($db_supporters)){ ?>
+                            <div class="col-xs-12">
+                                <br><br>
+                                <h2 class="col-xs-8">Current Supporters</h2>
+                                <button type="button" class="btn btn-tertiary col-xs-4" data-toggle="modal" data-target="#newsupporter" >
+                                    + Add Supporter
+                                </button>
+                                <label><input type="checkbox" id="cbox1" value="<?php echo esc_attr($db_values['show_supporters']); ?>" <?php if($db_values['show_supporters'] === 'true'){echo 'checked';}?> name="show_supporters"> Show Supporters Section on Home Page</label><br>
+                                <br><br>
+                            </div>
+                                
+                            <?php for ($i = 0; $i < $length; $i++) { ?>
+                                
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#supporter-<?php echo $i?>" aria-expanded="false" aria-controls="supporter-<?php echo [$i]?>">
+                            <?php echo $db_supporters[$i]['supporter_name'] ?>
+                        </button>
+                        <div id="supporter-<?php echo $i?>" class="col-xs-12 collapse" style="background: #fff;padding-top:20px;margin-bottom:40px;">
                             <form action="" method="post">
                                 <button type="submit" class="remove-btn" name="remove-btn-sup" value="<?php echo $i ?>" 
                                         style="
@@ -356,7 +361,6 @@ if( $db_values ) {
                                     <input type="text" id="supporter-image-edit" name="supporter_img" value="<?php echo $db_supporters[$i]['supporter_img'] ?>" style="width:65%;visibility:hidden;">
                                     <input id="supporter_image_edit_button" class="btn-primary btn supporter-edit" type="button" value="Choose Image" name="<?php echo $i ?>" />
                                 </div>
-                                
                                 
                                 <div class="col-xs-12 col-sm-7">
                                     <input type="text" name="supporter_name" value="<?php echo esc_attr($db_supporters[$i]['supporter_name']);?>" width="100%">

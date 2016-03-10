@@ -18,6 +18,7 @@ include( plugin_dir_path( __FILE__ ) . '/lmd-callback-about.php');
 include( plugin_dir_path( __FILE__ ) . '/lmd-callback-issues.php');
 include( plugin_dir_path( __FILE__ ) . '/lmd-callback-events.php');
 include( plugin_dir_path( __FILE__ ) . '/lmd-callback-join.php');
+include( plugin_dir_path( __FILE__ ) . '/lmd-callback-donate.php');
 
 /* Links to the style and script files */
 add_action('admin_enqueue_scripts', 'my_admin_scripts');
@@ -50,6 +51,7 @@ function register_my_custom_menu_page(){
     add_submenu_page( 'site-pages', 'The Issues', 'The Issues', 'administrator', 'site-pages-3', 'lmd_callback_issues');
     add_submenu_page( 'site-pages', 'Events Page', 'Events Page', 'administrator', 'site-pages-4', 'lmd_callback_events');
     add_submenu_page( 'site-pages', 'Join Campaign', 'Join Campaign', 'administrator', 'site-pages-5', 'lmd_callback_join');
+    add_submenu_page( 'site-pages', 'Donate', 'Donate', 'administrator', 'site-pages-6', 'lmd_callback_donate');
 }
 
 // Add action

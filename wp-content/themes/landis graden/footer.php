@@ -1,8 +1,8 @@
 
 <footer class="site-footer">
 	<div class="row footer-container">
-		<div class="col-xs-6" style="padding: 30px; padding-right: 60px;">
-			<svg class="pull-right" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		<div class="col-xs-12 text-center" style="padding: 30px; padding-right: 60px;">
+			<svg class="text-center" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	height="60px" viewBox="0 0 277.607 154.5" enable-background="new 0 0 277.607 154.5" xml:space="preserve">
 <g>
 	<g>
@@ -138,8 +138,8 @@
 
 
         </div>
-		<div id="social-icons" class="col-xs-6" style="padding-top: 15px">
-           <div class="row">
+		<div id="social-icons" class="col-xs-12 text-center" style="padding-top: 15px">
+            <div class="col-xs-12">
                <span style="color: #fff; font-size: 14px;">
                    <a href="https://www.facebook.com/LandisForVallejoMayor/">
                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -158,17 +158,17 @@
                    </a>
                    facebook.com/landisforvallejomayor</span>
            </div>
-            <div class="row">
+            <div class="col-xs-12">
                 <img src="<?php echo get_bloginfo('template_directory');?>/images/location.svg" width="25px" height="25px">
                 <span style="color: #fff; font-size: 14px;">Vallejo, CA 94589, PO Box 48484</span>
             </div>
-            <div class="row">
-                <img src="<?php echo get_bloginfo('template_directory');?>/images/email.svg" width="22px" height="22px">
-                <span style="color: #fff; font-size: 14px;"><a href="mailto:info@landisforvallejomayor.com" style="color: #fff; text-decoration:none;">info@landisforvallejomayor.com</a></span>
-            </div>
-            <div class="row">
+            <div class="col-xs-12">
                 <img src="<?php echo get_bloginfo('template_directory');?>/images/phone.svg" width="25px" height="25px">
                 <span style="color: #fff; font-size: 14px;">(707) 555-1234</span>
+            </div>
+            <div class="col-xs-12">
+                <img src="<?php echo get_bloginfo('template_directory');?>/images/email.svg" width="22px" height="22px">
+                <span style="color: #fff; font-size: 14px;"><a href="mailto:info@landisforvallejomayor.com" style="color: #fff; text-decoration:none;">info@landisforvallejomayor.com</a></span>
             </div>
 		</div>
 		<div class="col-xs-12 text-center" style="text-transform: uppercase; color: #9C9B9B; font-size: 10px; margin-top: 25px; letter-spacing: 2px;">

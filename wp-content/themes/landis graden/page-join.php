@@ -90,16 +90,10 @@ function my_contact_form_generate_response($type, $message){
       } 
   }
 ?>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12 text-center title-text white-text" style="padding-left: 0px;padding-right: 0px;margin-top: -10px;">
-            <img src="<?php echo $data_banner['block1_img']?>" style="width: 100%;">
-        </div>
-    </div>
-</div>
-<div class="container-fluid" style="background: #02429E;">
+<div class="container-fluid" style="background-image: url('<?php echo $data_banner['block1_img'] ?>');background-size:cover;background-attachment:fixed;">
+
     <div class="row" style="margin-top: 50px; margin-bottom: 50px;">
-        <div id="join-form-div" class="col-xs-12 col-sm-8 col-sm-offset-2" style="background: #fff;padding:20px;padding-left:45px;padding-bottom:40px;padding-right:45px;">
+        <div id="join-form-div" class="col-xs-12 col-sm-5" style="background: rgba(32, 31, 31, 0.95);border-radius:0px 5px 5px 0px;color:#fff;padding:20px;padding-left:45px;padding-bottom:40px;padding-right:45px;">
            <?php echo $response; ?>
             <form id="join-form" class="animated fadeIn" action="" method="post">
                 <h1>Join the Campaign</h1>
@@ -111,12 +105,12 @@ function my_contact_form_generate_response($type, $message){
                 <br><br>
                 <label for="">I'm Interested In:</label><br>
                 <div class="col-xs-12" style="padding:0;">
-                    <div class="col-xs-12 col-sm-6">
+                    <div class="col-sm-12 col-md-6">
                         <input type="checkbox" name="checklist[]" value="walking">&nbsp;Walking with Landis <br>
                         <input type="checkbox" name="checklist[]" value="phoning">&nbsp;Phoning with Landis <br>
                         <input type="checkbox" name="checklist[]" value="host">&nbsp;Hosting a House Party
                     </div>
-                    <div class="col-xs-12 col-sm-6">
+                    <div class="col-sm-12 col-md-6">
                         <input type="checkbox" name="checklist[]" value="lawn">&nbsp;Lawn Sign <br>
                         <input type="checkbox" name="checklist[]" value="list">&nbsp;Join the Email List <br>
                         <input type="checkbox" name="checklist[]" value="becoming">&nbsp;Become a Part of the Campaign Team!
